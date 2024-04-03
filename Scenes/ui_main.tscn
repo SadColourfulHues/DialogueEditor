@@ -1,0 +1,230 @@
+[gd_scene load_steps=23 format=3 uid="uid://bao8tjlijy6qx"]
+
+[ext_resource type="Script" path="res://Scripts/UI/EditorMain.cs" id="1_n68hj"]
+[ext_resource type="PackedScene" uid="uid://bnmj6shkufvns" path="res://Scenes/UI/ui_toolbar_button.tscn" id="2_6ptky"]
+[ext_resource type="Texture2D" uid="uid://xl6gywflxsev" path="res://Assets/Icons/editor_save.svg" id="3_aq8ib"]
+[ext_resource type="Texture2D" uid="uid://c3tn1ed8tnohb" path="res://Assets/Icons/editor_new.svg" id="3_mu74e"]
+[ext_resource type="Texture2D" uid="uid://dc8aruan3muy2" path="res://Assets/Icons/editor_play.svg" id="4_51ygs"]
+[ext_resource type="Texture2D" uid="uid://r4i4iqno02wn" path="res://Assets/Icons/editor_compile.svg" id="5_q25m4"]
+[ext_resource type="SyntaxHighlighter" uid="uid://dail45aoud5uj" path="res://Resources/res_syntax_highlighter.tres" id="6_8cwci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m1it"]
+bg_color = Color(0.917647, 0.917647, 0.917647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82lma"]
+bg_color = Color(0.831373, 0.831373, 0.831373, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_4m32r"]
+device = -1
+ctrl_pressed = true
+keycode = 78
+unicode = 110
+
+[sub_resource type="Shortcut" id="Shortcut_paw4c"]
+events = [SubResource("InputEventKey_4m32r")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ymahs"]
+device = -1
+ctrl_pressed = true
+keycode = 79
+unicode = 111
+
+[sub_resource type="Shortcut" id="Shortcut_khiyi"]
+events = [SubResource("InputEventKey_ymahs")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_iqu7v"]
+device = -1
+ctrl_pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_yn2uw"]
+events = [SubResource("InputEventKey_iqu7v")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_u4ekr"]
+device = -1
+shift_pressed = true
+ctrl_pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_xjmbb"]
+events = [SubResource("InputEventKey_u4ekr")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1o62y"]
+font_color = Color(0.372549, 0.372549, 0.372549, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_qr72i"]
+device = -1
+ctrl_pressed = true
+keycode = 82
+unicode = 114
+
+[sub_resource type="Shortcut" id="Shortcut_3usps"]
+events = [SubResource("InputEventKey_qr72i")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_27rnb"]
+device = -1
+ctrl_pressed = true
+keycode = 69
+unicode = 101
+
+[sub_resource type="Shortcut" id="Shortcut_vxiys"]
+events = [SubResource("InputEventKey_27rnb")]
+
+[node name="Main" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8m1it")
+script = ExtResource("1_n68hj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Toolbar" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_82lma")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Toolbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Toolbar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="New" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer" instance=ExtResource("2_6ptky")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(55, 24)
+layout_mode = 2
+tooltip_text = "Create a new dialogue script project. [ctrl+n]"
+shortcut = SubResource("Shortcut_paw4c")
+
+[node name="TextureRect" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/New" index="0"]
+texture = ExtResource("3_mu74e")
+
+[node name="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/New" index="1"]
+offset_right = 50.0
+text = "New"
+
+[node name="Open" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer" instance=ExtResource("2_6ptky")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(55, 24)
+layout_mode = 2
+tooltip_text = "Open an existing dialogue script project. [ctrl+o}"
+shortcut = SubResource("Shortcut_khiyi")
+
+[node name="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Open" index="1"]
+offset_right = 51.0
+text = "Open"
+
+[node name="Save" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer" instance=ExtResource("2_6ptky")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(55, 24)
+layout_mode = 2
+tooltip_text = "(Re)saves a dialogue script project to disk. [ctrl+s]"
+shortcut = SubResource("Shortcut_yn2uw")
+
+[node name="TextureRect" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Save" index="0"]
+texture = ExtResource("3_aq8ib")
+
+[node name="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Save" index="1"]
+offset_right = 50.0
+text = "Save"
+
+[node name="SaveAs" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer" instance=ExtResource("2_6ptky")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 24)
+layout_mode = 2
+tooltip_text = "Saves a dialogue script project to disk. [ctrl+shift+s]"
+shortcut = SubResource("Shortcut_xjmbb")
+
+[node name="TextureRect" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/SaveAs" index="0"]
+texture = ExtResource("3_aq8ib")
+
+[node name="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/SaveAs" index="1"]
+offset_right = 66.0
+text = "Save As"
+
+[node name="Title" type="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Unsaved Script)"
+label_settings = SubResource("LabelSettings_1o62y")
+horizontal_alignment = 1
+
+[node name="Run" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer" instance=ExtResource("2_6ptky")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 24)
+layout_mode = 2
+tooltip_text = "Previews the current dialogue script in-editor. [ctrl+r]"
+shortcut = SubResource("Shortcut_3usps")
+
+[node name="TextureRect" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Run" index="0"]
+texture = ExtResource("4_51ygs")
+
+[node name="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Run" index="1"]
+offset_right = 46.0
+text = "Play"
+
+[node name="Export" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer" instance=ExtResource("2_6ptky")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Compiles dialogue script into a binary dialogue graph file. [ctrl+e]"
+shortcut = SubResource("Shortcut_vxiys")
+
+[node name="TextureRect" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Export" index="0"]
+texture = ExtResource("5_q25m4")
+
+[node name="Label" parent="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Export" index="1"]
+text = "Export"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScriptEditor" type="CodeEdit" parent="VBoxContainer/HSplitContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/background_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/current_line_color = Color(0.909804, 0.909804, 0.909804, 1)
+syntax_highlighter = ExtResource("6_8cwci")
+highlight_current_line = true
+auto_brace_completion_enabled = true
+auto_brace_completion_pairs = {
+"[": "]"
+}
+
+[editable path="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/New"]
+[editable path="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Open"]
+[editable path="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Save"]
+[editable path="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/SaveAs"]
+[editable path="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Run"]
+[editable path="VBoxContainer/Toolbar/MarginContainer/HBoxContainer/Export"]

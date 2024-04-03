@@ -1,0 +1,14 @@
+[gd_resource type="SyntaxHighlighter" script_class="DialogueScriptSyntaxHighlighter" load_steps=2 format=3 uid="uid://dail45aoud5uj"]
+
+[ext_resource type="Script" path="res://Scripts/Utils/DialogueScriptSyntaxHighlighter.cs" id="1_o8lci"]
+
+[resource]
+script = ExtResource("1_o8lci")
+_foregroundColour = Color(0, 0, 0, 1)
+_commentColour = Color(0.290196, 0.705882, 0.34902, 1)
+_characterColour = Color(0.109804, 0.780392, 0.513726, 1)
+_tagColourA = Color(0.831373, 0.341176, 0, 1)
+_tagColourB = Color(0.72549, 0.180392, 0.309804, 1)
+_choiceColour = Color(0.305882, 0.258824, 1, 1)
+_commandColour = Color(0.639216, 0, 0.819608, 1)
+_variableColour = Color(0.113725, 0.478431, 0, 1)

@@ -1,0 +1,12 @@
+[submodule "Modules/SadChromaLib"]
+	path = Modules/SadChromaLib
+	url = https://github.com/SadColourfulHues/SadChromaLib
+[submodule "Modules/GodotCommons"]
+	path = Modules/GodotCommons
+	url = https://github.com/SadColourfulHues/GodotCommons
+[submodule "Modules/Submodules/UI"]
+	path = Modules/Submodules/UI
+	url = https://github.com/SadColourfulHues/UI
+[submodule "Modules/Submodules/Dialogue"]
+	path = Modules/Submodules/Dialogue
+	url = https://github.com/SadColourfulHues/Dialogue
