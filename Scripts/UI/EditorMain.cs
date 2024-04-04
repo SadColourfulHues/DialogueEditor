@@ -10,6 +10,9 @@ public sealed partial class EditorMain: Control
     DialogueParser _parser;
     CodeEdit _scriptEditor;
 
+	ScriptAnalyserThread _analyser;
+	Timer _analysisDebounce;
+
 	string[] ScriptFileFilter = {
 		"*.txt ; Dialogue Script Files, Text Files"
 	};
@@ -20,13 +23,26 @@ public sealed partial class EditorMain: Control
 
     public EditorMain()
     {
+		_analyser = new();
         _lastFilePath = null;
         _parser = new();
+
+		_analyser.OnDataAvailable += OnAnalysisCompleted;
     }
 
     public override void _Ready()
     {
+		_analysisDebounce = new() {
+			WaitTime = 1.0f,
+			OneShot = true
+		};
+
 		_scriptEditor = GetNode<CodeEdit>("%ScriptEditor");
+		CallDeferred(MethodName.AddChild, _analysisDebounce);
+
+		// Bind Signals //
+
+		_scriptEditor.TextChanged += OnScriptUpdated;
 
 		BindButton("%New", OnCreateNew);
 		BindButton("%Save", OnSaveConvenient);
@@ -41,9 +57,13 @@ public sealed partial class EditorMain: Control
 			=> StartFileDialog("Export dialogue graph", false, GraphFileFilter, CompileAndWriteGraphToDisk));
     }
 
-	#region Events
+    public override void _ExitTree() {
+		_analyser.AwaitTasks();
+    }
 
-	private void OnCreateNew()
+    #region Events
+
+    private void OnCreateNew()
 	{
 		_scriptEditor.Text = "";
 
@@ -59,6 +79,25 @@ public sealed partial class EditorMain: Control
 		}
 
 		WriteFileToDisk(_lastFilePath);
+	}
+
+	private async void OnScriptUpdated()
+	{
+		if (!_analysisDebounce.IsStopped())
+			return;
+
+		_analysisDebounce.Start();
+		await ToSignal(_analysisDebounce, Timer.SignalName.Timeout);
+
+		_analyser.Analyse(_scriptEditor.Text);
+	}
+
+	private void OnAnalysisCompleted(ScriptInfoData info)
+	{
+		// TODO: Implement UI for info
+		GD.Print("Character Names: ", info.CharacterNames.Join(", "));
+		GD.Print("Variable Names: ", info.VariableNames.Join(", "));
+		GD.Print("Tag Names: ", info.TagNames.Join(", "));
 	}
 
 	#endregion

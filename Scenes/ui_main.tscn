@@ -212,11 +212,20 @@ theme_override_constants/margin_bottom = 5
 [node name="ScriptEditor" type="CodeEdit" parent="VBoxContainer/HSplitContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/background_color = Color(1, 1, 1, 1)
+theme_override_colors/background_color = Color(0.796078, 0.796078, 0.796078, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/current_line_color = Color(0.909804, 0.909804, 0.909804, 1)
+theme_override_colors/current_line_color = Color(0.713726, 0.764706, 0.72549, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_background_color = Color(0, 0, 0, 1)
+theme_override_colors/brace_mismatch_color = Color(0.854902, 0, 0.192157, 1)
+theme_override_colors/line_number_color = Color(0, 0, 0, 1)
+scroll_smooth = true
+scroll_past_end_of_file = true
+minimap_draw = true
 syntax_highlighter = ExtResource("6_8cwci")
 highlight_current_line = true
+draw_tabs = true
+line_folding = true
 auto_brace_completion_enabled = true
 auto_brace_completion_pairs = {
 "[": "]"
