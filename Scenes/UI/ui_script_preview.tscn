@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://dkmf1tfbs5ohc"]
+
+[ext_resource type="PackedScene" uid="uid://drma5qjc4hpre" path="res://Scenes/UI/ui_dialogue_box.tscn" id="1_l73wk"]
+[ext_resource type="PackedScene" uid="uid://bnmj6shkufvns" path="res://Scenes/UI/ui_toolbar_button.tscn" id="2_tpso1"]
+[ext_resource type="StyleBox" uid="uid://bfdxm843p73m8" path="res://Assets/styles/style_toolbar.tres" id="2_yys0y"]
+[ext_resource type="Texture2D" uid="uid://cs7kvm6pd65ee" path="res://Assets/Icons/editor_playback_close.svg" id="4_pypsb"]
+[ext_resource type="Texture2D" uid="uid://bgp515ui8lrjh" path="res://Assets/Icons/editor_playback_restart.svg" id="5_ypldm"]
+[ext_resource type="Texture2D" uid="uid://c0d66hwqcao61" path="res://Assets/Icons/editor_playback_jump.svg" id="6_ufugy"]
+[ext_resource type="Texture2D" uid="uid://bpk075t6u7m23" path="res://Assets/Icons/editor_playback_vars.svg" id="7_vys0j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwnod"]
+bg_color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7famc"]
+font_color = Color(0.545098, 0.545098, 0.545098, 1)
+
+[node name="Panel" type="Panel"]
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 520.0
+offset_bottom = 680.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwnod")
+
+[node name="Preview" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Preview"]
+layout_mode = 2
+
+[node name="Dialogue" parent="Preview/VBoxContainer" instance=ExtResource("1_l73wk")]
+custom_minimum_size = Vector2(450, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Preview/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Choices" type="VBoxContainer" parent="Preview/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="Preview/VBoxContainer/MarginContainer/Choices"]
+layout_mode = 2
+text = "What say you?"
+label_settings = SubResource("LabelSettings_7famc")
+
+[node name="Items" type="VBoxContainer" parent="Preview/VBoxContainer/MarginContainer/Choices"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="ToolBar" type="Panel" parent="Preview/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_yys0y")
+
+[node name="MarginContainer" type="MarginContainer" parent="Preview/VBoxContainer/ToolBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.715
+offset_bottom = 2.285
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Preview/VBoxContainer/ToolBar/MarginContainer"]
+layout_mode = 2
+
+[node name="Close" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+layout_mode = 2
+
+[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close" index="0"]
+texture = ExtResource("4_pypsb")
+
+[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close" index="1"]
+text = "Close"
+
+[node name="Restart" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+custom_minimum_size = Vector2(70, 24)
+layout_mode = 2
+
+[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart" index="0"]
+texture = ExtResource("5_ypldm")
+
+[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart" index="1"]
+offset_right = 70.0
+text = "Restart"
+
+[node name="Jump" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+layout_mode = 2
+
+[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump" index="0"]
+texture = ExtResource("6_ufugy")
+
+[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump" index="1"]
+text = "Jump"
+
+[node name="Spacer" type="Control" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Variables" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+custom_minimum_size = Vector2(80, 24)
+layout_mode = 2
+
+[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables" index="0"]
+texture = ExtResource("7_vys0j")
+
+[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables" index="1"]
+offset_right = 76.0
+text = "Variables"
+
+[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close"]
+[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart"]
+[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump"]
+[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables"]

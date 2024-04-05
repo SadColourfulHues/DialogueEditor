@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://drma5qjc4hpre"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly4n6"]
+bg_color = Color(0.85098, 0.85098, 0.85098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.411765, 0.411765, 0.411765, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_046t7"]
+font_size = 20
+font_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_14rkm"]
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
+[node name="Dialogue" type="Panel"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -680.0
+offset_bottom = -398.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ly4n6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CharName" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Character Name"
+label_settings = SubResource("LabelSettings_046t7")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu sodales eros. Curabitur quis neque purus. Aenean magna ligula, rhoncus eu ullamcorper in, consectetur tincidunt sem. Aliquam ac aliquet tellus. Curabitur quis lobortis sapien, at elementum tortor. Nullam condimentum ut arcu quis porttitor. Sed non semper neque, sit amet tristique nisi. Nulla condimentum ornare mauris, sed blandit turpis congue vitae. Morbi iaculis placerat sapien quis porttitor. Ut mattis neque eu sodales euismod. "
+label_settings = SubResource("LabelSettings_14rkm")
+autowrap_mode = 3
+text_overrun_behavior = 4
+max_lines_visible = 7
