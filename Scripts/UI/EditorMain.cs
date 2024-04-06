@@ -1,6 +1,7 @@
 using System.IO;
 using SadChromaLib.Utils.Convenience;
 using SadChromaLib.Specialisations.Dialogue;
+using SadChromaLib.Specialisations.Dialogue.Types;
 
 namespace ScriptEditor;
 
@@ -8,17 +9,18 @@ public sealed partial class EditorMain: Control
 {
     string _lastFilePath;
     DialogueParser _parser;
+	DialoguePreview _preview;
     CodeEdit _scriptEditor;
 
 	ScriptAnalyserThread _analyser;
 	Timer _analysisDebounce;
 
 	string[] ScriptFileFilter = {
-		"*.txt ; Dialogue Script Files, Text Files"
+		"*.txt ; Dialogue Script Files/Text Files"
 	};
 
 	string[] GraphFileFilter = {
-		"*.dgr ; SCHLib Dialogue Graph"
+		"*.dgr ; SCHLib Dialogue Files"
 	};
 
     public EditorMain()
@@ -37,24 +39,28 @@ public sealed partial class EditorMain: Control
 			OneShot = true
 		};
 
-		_scriptEditor = GetNode<CodeEdit>("%ScriptEditor");
 		CallDeferred(MethodName.AddChild, _analysisDebounce);
+
+		_scriptEditor = GetNode<CodeEdit>("%ScriptEditor");
+		_preview = GetNode<DialoguePreview>("%Preview");
 
 		// Bind Signals //
 
 		_scriptEditor.TextChanged += OnScriptUpdated;
 
-		BindButton("%New", OnCreateNew);
-		BindButton("%Save", OnSaveConvenient);
+		this.BindButton("%New", OnCreateNew);
+		this.BindButton("%Save", OnSaveConvenient);
 
-		BindButton("%Open", ()
+		this.BindButton("%Open", ()
 			=> StartFileDialog("Load script", true, ScriptFileFilter, ReadFileFromDisk));
 
-		BindButton("%SaveAs", ()
+		this.BindButton("%SaveAs", ()
 			=> StartFileDialog("Save script", false, ScriptFileFilter, WriteFileToDisk));
 
-		BindButton("%Export", ()
-			=> StartFileDialog("Export dialogue graph", false, GraphFileFilter, CompileAndWriteGraphToDisk));
+		this.BindButton("%Run", OnShowPreview);
+
+		this.BindButton("%Export", ()
+			=> StartFileDialog("Export dialogue file", false, GraphFileFilter, CompileAndWriteGraphToDisk));
     }
 
     public override void _ExitTree() {
@@ -92,6 +98,14 @@ public sealed partial class EditorMain: Control
 		_analyser.Analyse(_scriptEditor.Text);
 	}
 
+	private void OnShowPreview()
+	{
+		DialogueGraph dialogue = _parser.Compile(_scriptEditor.Text);
+
+		_preview.StartPreview(dialogue);
+		_scriptEditor.CallDeferred(Control.MethodName.ReleaseFocus);
+	}
+
 	private void OnAnalysisCompleted(ScriptInfoData info)
 	{
 		// TODO: Implement UI for info
@@ -118,12 +132,13 @@ public sealed partial class EditorMain: Control
 		}
 
 		_lastFilePath = filePath;
+
 		UpdateSavedTitle();
+		OnScriptUpdated();
 	}
 
 	private void WriteFileToDisk(string filePath)
 	{
-
 		if (File.Exists(filePath)) {
 			File.Delete(filePath);
 		}
@@ -203,10 +218,6 @@ public sealed partial class EditorMain: Control
 		}
 
 		nameLabel.Text = System.IO.Path.GetFileName(_lastFilePath);
-	}
-
-	private void BindButton(string name, Action callback) {
-		GetNode<Button>(name).Pressed += callback;
 	}
 
 	#endregion

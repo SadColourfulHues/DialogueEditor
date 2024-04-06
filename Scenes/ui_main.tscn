@@ -219,25 +219,30 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/background_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.521569, 0.858824, 0.670588, 1)
 theme_override_colors/current_line_color = Color(0.952941, 0.972549, 0.956863, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_background_color = Color(0, 0, 0, 1)
 theme_override_colors/brace_mismatch_color = Color(0.854902, 0, 0.192157, 1)
 theme_override_colors/line_number_color = Color(0, 0, 0, 1)
+wrap_mode = 1
 scroll_smooth = true
 scroll_past_end_of_file = true
 minimap_draw = true
+minimap_width = 50
+caret_blink = true
 syntax_highlighter = ExtResource("6_8cwci")
 highlight_current_line = true
 draw_tabs = true
 line_folding = true
+gutters_draw_line_numbers = true
 auto_brace_completion_enabled = true
 auto_brace_completion_pairs = {
 "[": "]"
 }
 
 [node name="Preview" parent="HSplitContainer" instance=ExtResource("8_yqspx")]
-visible = false
+unique_name_in_owner = true
 custom_minimum_size = Vector2(470, 0)
 layout_mode = 2
 

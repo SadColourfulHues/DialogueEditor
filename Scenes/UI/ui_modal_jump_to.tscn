@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://2iq2m0615i2j"]
+
+[ext_resource type="Script" path="res://Scripts/UI/JumpToModal.cs" id="1_yjokk"]
+[ext_resource type="StyleBox" uid="uid://b3pvl8fk5qgrh" path="res://Assets/styles/style_modal.tres" id="1_yykrd"]
+[ext_resource type="PackedScene" uid="uid://bnmj6shkufvns" path="res://Scenes/UI/ui_toolbar_button.tscn" id="2_u0k5h"]
+[ext_resource type="Texture2D" uid="uid://cs7kvm6pd65ee" path="res://Assets/Icons/editor_playback_close.svg" id="3_jt3r6"]
+[ext_resource type="PackedScene" uid="uid://ctrdmqix5xoya" path="res://Scenes/UI/ui_item_jump.tscn" id="4_0u5qy"]
+[ext_resource type="Script" path="res://Scripts/UI/JumpToList.cs" id="4_kae20"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c4emg"]
+font_size = 20
+font_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="JumpToModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -776.0
+offset_bottom = -176.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_yjokk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_yykrd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jump to"
+label_settings = SubResource("LabelSettings_c4emg")
+
+[node name="Close" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_u0k5h")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Close" index="0"]
+texture = ExtResource("3_jt3r6")
+
+[node name="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Close" index="1"]
+text = "Close"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Spacer" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="List" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("_viewport")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_kae20")
+_viewport = NodePath("MarginContainer/VBoxContainer")
+_pkgItemViewTemplate = ExtResource("4_0u5qy")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/List/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[editable path="Panel/MarginContainer/VBoxContainer/HBoxContainer/Close"]

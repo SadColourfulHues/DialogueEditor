@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5rrdvidlbyi0"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/shd_blurred_bg.gdshader" id="1_r8kjt"]
+
+[resource]
+shader = ExtResource("1_r8kjt")
+shader_parameter/blur_level = 2.333
+shader_parameter/blur_mix = 0.491

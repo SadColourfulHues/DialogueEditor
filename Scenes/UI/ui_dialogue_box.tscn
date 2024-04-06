@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://drma5qjc4hpre"]
+[gd_scene load_steps=5 format=3 uid="uid://drma5qjc4hpre"]
+
+[ext_resource type="Script" path="res://Scripts/UI/DialogueBox.cs" id="1_4wc8r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly4n6"]
 bg_color = Color(0.85098, 0.85098, 0.85098, 1)
@@ -30,6 +32,7 @@ offset_bottom = -398.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ly4n6")
+script = ExtResource("1_4wc8r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -46,7 +49,8 @@ theme_override_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="CharName" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Character" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Character Name"
 label_settings = SubResource("LabelSettings_046t7")
@@ -54,7 +58,8 @@ label_settings = SubResource("LabelSettings_046t7")
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Dialogue" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 3

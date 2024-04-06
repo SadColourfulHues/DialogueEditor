@@ -54,7 +54,6 @@ public sealed partial class DialogueScriptSyntaxHighlighter: SyntaxHighlighter
 		switch (type) {
 			case DialogueParser.LineType.Choice:
 				textLineSpan = DialogueParser.StripEmpty(textLineSpan);
-				GD.Print(textLineSpan.ToString());
 
 				// Apply colouring depending on its inner type
 				switch (DialogueParser.Identify(textLineSpan)) {

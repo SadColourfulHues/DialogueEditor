@@ -1,48 +1,115 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkmf1tfbs5ohc"]
+[gd_scene load_steps=26 format=3 uid="uid://dkmf1tfbs5ohc"]
 
+[ext_resource type="Material" uid="uid://cjil7ce3qs5w7" path="res://Assets/Materials/m_preview_bg.tres" id="1_bcgv6"]
 [ext_resource type="PackedScene" uid="uid://drma5qjc4hpre" path="res://Scenes/UI/ui_dialogue_box.tscn" id="1_l73wk"]
+[ext_resource type="Script" path="res://Scripts/UI/DialoguePreview.cs" id="1_wet15"]
 [ext_resource type="PackedScene" uid="uid://bnmj6shkufvns" path="res://Scenes/UI/ui_toolbar_button.tscn" id="2_tpso1"]
 [ext_resource type="StyleBox" uid="uid://bfdxm843p73m8" path="res://Assets/styles/style_toolbar.tres" id="2_yys0y"]
+[ext_resource type="PackedScene" uid="uid://38d2p6uhbh8e" path="res://Scenes/UI/ui_choice_button.tscn" id="3_5wiye"]
 [ext_resource type="Texture2D" uid="uid://cs7kvm6pd65ee" path="res://Assets/Icons/editor_playback_close.svg" id="4_pypsb"]
 [ext_resource type="Texture2D" uid="uid://bgp515ui8lrjh" path="res://Assets/Icons/editor_playback_restart.svg" id="5_ypldm"]
 [ext_resource type="Texture2D" uid="uid://c0d66hwqcao61" path="res://Assets/Icons/editor_playback_jump.svg" id="6_ufugy"]
 [ext_resource type="Texture2D" uid="uid://bpk075t6u7m23" path="res://Assets/Icons/editor_playback_vars.svg" id="7_vys0j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwnod"]
-bg_color = Color(0.360784, 0.360784, 0.360784, 1)
+[ext_resource type="PackedScene" uid="uid://2iq2m0615i2j" path="res://Scenes/UI/ui_modal_jump_to.tscn" id="10_xon7l"]
+[ext_resource type="Script" path="res://Scripts/UI/ModalOverlay.cs" id="11_74vm5"]
+[ext_resource type="Material" uid="uid://5rrdvidlbyi0" path="res://Assets/Materials/m_blurred_bg.tres" id="11_nkbgf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7famc"]
-font_color = Color(0.545098, 0.545098, 0.545098, 1)
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.223529)
+shadow_offset = Vector2(1, 4)
 
-[node name="Panel" type="Panel"]
+[sub_resource type="InputEventKey" id="InputEventKey_hdjvx"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_wgwiv"]
+events = [SubResource("InputEventKey_hdjvx")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_28aur"]
+device = -1
+shift_pressed = true
+ctrl_pressed = true
+keycode = 82
+unicode = 82
+
+[sub_resource type="Shortcut" id="Shortcut_fdgx0"]
+events = [SubResource("InputEventKey_28aur")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_yol1d"]
+device = -1
+ctrl_pressed = true
+keycode = 74
+unicode = 106
+
+[sub_resource type="Shortcut" id="Shortcut_ejcin"]
+events = [SubResource("InputEventKey_yol1d")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_4csu8"]
+device = -1
+alt_pressed = true
+keycode = 86
+unicode = 118
+
+[sub_resource type="Shortcut" id="Shortcut_0j4jb"]
+events = [SubResource("InputEventKey_4csu8")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq14s"]
+bg_color = Color(0.913725, 0.882353, 0.705882, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.443137, 0.321569, 0.152941, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_xvolo"]
+font_size = 14
+font_color = Color(0.40119, 0.325312, 0.111061, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jvpek"]
+font_size = 15
+font_color = Color(0.313726, 0.262745, 0.243137, 1)
+
+[node name="Preview" type="Panel"]
+material = ExtResource("1_bcgv6")
+custom_minimum_size = Vector2(510, 0)
 offset_left = 10.0
 offset_top = 16.0
 offset_right = 520.0
 offset_bottom = 680.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wwnod")
+script = ExtResource("1_wet15")
+_pkgChoiceButton = ExtResource("3_5wiye")
 
-[node name="Preview" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Preview"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Dialogue" parent="Preview/VBoxContainer" instance=ExtResource("1_l73wk")]
+[node name="Dialogue" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_l73wk")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(450, 250)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="Preview/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -50,26 +117,35 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Choices" type="VBoxContainer" parent="Preview/VBoxContainer/MarginContainer"]
-visible = false
+[node name="Choices" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="Preview/VBoxContainer/MarginContainer/Choices"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/Choices"]
 layout_mode = 2
 text = "What say you?"
 label_settings = SubResource("LabelSettings_7famc")
 
-[node name="Items" type="VBoxContainer" parent="Preview/VBoxContainer/MarginContainer/Choices"]
-custom_minimum_size = Vector2(0, 64)
+[node name="ChoiceItems" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/Choices"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 6
+theme_override_constants/separation = 8
 
-[node name="ToolBar" type="Panel" parent="Preview/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ToolBar" type="Panel" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_yys0y")
 
-[node name="MarginContainer" type="MarginContainer" parent="Preview/VBoxContainer/ToolBar"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ToolBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,54 +159,138 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Preview/VBoxContainer/ToolBar/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer"]
 layout_mode = 2
 
-[node name="Close" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+[node name="Close" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Closes the preview panel. (Esc)"
+shortcut = SubResource("Shortcut_wgwiv")
 
-[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close" index="0"]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close" index="0"]
 texture = ExtResource("4_pypsb")
 
-[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close" index="1"]
+[node name="Label" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close" index="1"]
 text = "Close"
 
-[node name="Restart" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+[node name="Restart" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 24)
 layout_mode = 2
+tooltip_text = "Restarts dialogue playback and clears all flag variables. (ctrl+shift+r)"
+shortcut = SubResource("Shortcut_fdgx0")
 
-[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart" index="0"]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart" index="0"]
 texture = ExtResource("5_ypldm")
 
-[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart" index="1"]
+[node name="Label" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart" index="1"]
 offset_right = 70.0
 text = "Restart"
 
-[node name="Jump" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+[node name="Jump" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Jumps to a particular dialogue block. (ctrl+j)"
+shortcut = SubResource("Shortcut_ejcin")
 
-[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump" index="0"]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump" index="0"]
 texture = ExtResource("6_ufugy")
 
-[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump" index="1"]
+[node name="Label" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump" index="1"]
 text = "Jump"
 
-[node name="Spacer" type="Control" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Variables" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+[node name="Variables" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer" instance=ExtResource("2_tpso1")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 24)
 layout_mode = 2
+tooltip_text = "Shows the variable editor.. (alt+v)"
+shortcut = SubResource("Shortcut_0j4jb")
 
-[node name="TextureRect" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables" index="0"]
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables" index="0"]
 texture = ExtResource("7_vys0j")
 
-[node name="Label" parent="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables" index="1"]
+[node name="Label" parent="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables" index="1"]
 offset_right = 76.0
 text = "Variables"
 
-[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close"]
-[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart"]
-[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump"]
-[editable path="Preview/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables"]
+[node name="Print" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -249.0
+offset_top = 8.0
+offset_right = 241.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kq14s")
+
+[node name="MarginContainer" type="MarginContainer" parent="Print"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Print/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Print/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Info"
+label_settings = SubResource("LabelSettings_xvolo")
+
+[node name="PrintMessage" type="Label" parent="Print/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat leo sit amet erat vehicula finibus in nec leo."
+label_settings = SubResource("LabelSettings_jvpek")
+autowrap_mode = 3
+
+[node name="ModalOverlay" type="ColorRect" parent="."]
+visible = false
+material = ExtResource("11_nkbgf")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.909804, 0.913725, 0.909804, 1)
+script = ExtResource("11_74vm5")
+
+[node name="JumpToModal" parent="." instance=ExtResource("10_xon7l")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 488)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -276.0
+offset_right = 231.0
+offset_bottom = 276.0
+pivot_offset = Vector2(231, 276)
+
+[editable path="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Close"]
+[editable path="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Restart"]
+[editable path="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Jump"]
+[editable path="MarginContainer/VBoxContainer/ToolBar/MarginContainer/HBoxContainer/Variables"]
