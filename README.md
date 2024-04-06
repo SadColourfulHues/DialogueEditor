@@ -1,4 +1,4 @@
-![Screenshot_20240406_200347](https://github.com/SadColourfulHues/DialogueEditor/assets/46611929/51ba300c-e184-491e-bf5d-4bda7e79383c)
+![Screenshot_20240406_201923](https://github.com/SadColourfulHues/DialogueEditor/assets/46611929/ee5aaa9c-a584-4a8b-9a2f-079fce1ebef0)
 
 # Dialogue Script Editor
 A standalone text editor, made in Godot 4 (C#) 
