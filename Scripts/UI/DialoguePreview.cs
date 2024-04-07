@@ -211,7 +211,7 @@ public sealed partial class DialoguePreview: Control, IDialoguePlaybackHandler
         _hasMadeChoice = false;
 
         for (int i = 0; i < choices.Length; ++i) {
-            _choicesViewport.GetChild<Button>(i).Text = choices[i].ChoiceText;
+            _choicesViewport.GetChild<ChoiceButton>(i).SetText(choices[i].ChoiceText);
         }
 
         _choicesUI.Visible = true;

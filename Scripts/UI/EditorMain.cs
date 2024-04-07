@@ -27,7 +27,7 @@ public sealed partial class EditorMain: Control
     {
 		_analyser = new();
         _lastFilePath = null;
-        _parser = new();
+        _parser = new(true);
 
 		_analyser.OnDataAvailable += OnAnalysisCompleted;
     }
@@ -171,7 +171,8 @@ public sealed partial class EditorMain: Control
 			Access = FileDialog.AccessEnum.Filesystem,
 			FileMode = readMode ? FileDialog.FileModeEnum.OpenFile : FileDialog.FileModeEnum.SaveFile,
 			Title = title,
-			Filters = fileFilter
+			Filters = fileFilter,
+			CurrentDir = OS.GetSystemDir(OS.SystemDir.Documents)
 		};
 
 		AddChild(dialogRef);

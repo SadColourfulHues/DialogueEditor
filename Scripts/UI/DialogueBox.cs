@@ -6,7 +6,7 @@ public sealed partial class DialogueBox: Control
     float _wordsPerSecond = 10.0f;
 
     Label _labelCharacter;
-    Label _labelDialogue;
+    RichTextLabel _labelDialogue;
 
     Tween _tweenCharacter;
     Tween _tweenDialogue;
@@ -14,7 +14,7 @@ public sealed partial class DialogueBox: Control
     public override void _Ready()
     {
         _labelCharacter = GetNode<Label>("%Character");
-        _labelDialogue = GetNode<Label>("%Dialogue");
+        _labelDialogue = GetNode<RichTextLabel>("%Dialogue");
     }
 
     public void Update(string characterName, string dialogueText)

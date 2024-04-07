@@ -54,7 +54,7 @@ public sealed class ScriptAnalyserThread
                     break;
 
                 string line = reader.ReadLine();
-                DialogueParser.LineType type = DialogueParser.Identify(line);
+                DialogueParser.LineType type = DialogueParser.IdentifyBB(line);
 
                 if (line is null)
                     break;

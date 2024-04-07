@@ -23,26 +23,24 @@ public static class TweenUtils
 
     public static void StartTypewriter(ref Tween tween, Label label, float wordsPerSecond = 60)
     {
-        // Estimate word count by counting the number of whitespaces (accuracy notwithstanding)
-        ReadOnlySpan<char> text = label.Text.AsSpan();
+        float duration = GetDurationForWordCount(label.Text, wordsPerSecond);
 
-        bool previousIsWhitespace = false;
-        float duration = 0;
+        // Start typewriter animation
+        label.VisibleRatio = 0.0f;
 
-        for (int i = 0; i < text.Length; ++i) {
-            if (!char.IsWhiteSpace(text[i])) {
-                previousIsWhitespace = false;
-                continue;
-            }
+        StartOrReuse(ref tween, label, (Tween t) =>
+            t.TweenProperty(
+                @object: label,
+                property: Label.PropertyName.VisibleRatio.ToString(),
+                finalVal: 1.0f,
+                duration: duration
+            )
+        );
+    }
 
-            if (previousIsWhitespace)
-                continue;
-
-            duration ++;
-            previousIsWhitespace = true;
-        }
-
-        duration /= wordsPerSecond;
+    public static void StartTypewriter(ref Tween tween, RichTextLabel label, float wordsPerSecond = 60)
+    {
+        float duration = GetDurationForWordCount(label.Text, wordsPerSecond);
 
         // Start typewriter animation
         label.VisibleRatio = 0.0f;
@@ -190,5 +188,27 @@ public static class TweenUtils
 
             t.TweenCallback(Callable.From(completionCallback));
         });
+    }
+
+    private static float GetDurationForWordCount(ReadOnlySpan<char> text, float wordsPerSecond)
+    {
+        // Estimate word count by counting the number of whitespaces (accuracy notwithstanding)
+        bool previousIsWhitespace = false;
+        float duration = 0;
+
+        for (int i = 0; i < text.Length; ++i) {
+            if (!char.IsWhiteSpace(text[i])) {
+                previousIsWhitespace = false;
+                continue;
+            }
+
+            if (previousIsWhitespace)
+                continue;
+
+            duration ++;
+            previousIsWhitespace = true;
+        }
+
+        return duration / wordsPerSecond;
     }
 }

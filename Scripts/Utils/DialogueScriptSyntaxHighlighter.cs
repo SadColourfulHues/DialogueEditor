@@ -13,34 +13,32 @@ namespace ScriptEditor;
 public sealed partial class DialogueScriptSyntaxHighlighter: SyntaxHighlighter
 {
 	[Export]
-	private Color _foregroundColour = Colors.Black;
+	Color _foregroundColour = Colors.Black;
 
 	[Export]
-	private Color _commentColour = Colors.GreenYellow;
+	Color _commentColour = Colors.GreenYellow;
 
 	[Export]
-	private Color _characterColour = Colors.DarkGray;
+	Color _characterColour = Colors.DarkGray;
 
 	[Export]
-	private Color _tagColourA = Colors.Orange;
+	Color _tagColourA = Colors.Orange;
 
 	[Export]
-	private Color _tagColourB = Colors.Salmon;
+	Color _tagColourB = Colors.Salmon;
 
 	[Export]
-	private Color _choiceColour = Colors.Wheat;
+	Color _choiceColour = Colors.Wheat;
 
 	[Export]
-	private Color _commandColour = Colors.Pink;
+	Color _commandColour = Colors.Pink;
 
 	[Export]
-	private Color _variableColour = Colors.SeaGreen;
+	Color _variableColour = Colors.SeaGreen;
 
-	private const string KeyColour = "color";
-
-	private Dictionary<DialogueParser.LineType, Dictionary<string, Color>> _colourDicts;
-	private Dictionary<string, Color> _variableColourDict;
-	private Dictionary<string, Color> _targetTagColourDict;
+	Dictionary<DialogueParser.LineType, Dictionary<string, Color>> _colourDicts;
+	Dictionary<string, Color> _variableColourDict;
+	Dictionary<string, Color> _targetTagColourDict;
 
 	public override Dictionary _GetLineSyntaxHighlighting(int line)
 	{
@@ -48,15 +46,16 @@ public sealed partial class DialogueScriptSyntaxHighlighter: SyntaxHighlighter
 		Dictionary properties = new();
 
 		string textLine = GetTextEdit().GetLine(line);
-		ReadOnlySpan<char> textLineSpan = textLine.AsSpan();
-		DialogueParser.LineType type = DialogueParser.Identify(textLine);
+		DialogueParser.LineType type = DialogueParser.IdentifyBB(textLine);
 
-		switch (type) {
+		switch (type)
+		{
 			case DialogueParser.LineType.Choice:
-				textLineSpan = DialogueParser.StripEmpty(textLineSpan);
+				string strippedLine = DialogueParser.StripEmpty(textLine).ToString();
 
 				// Apply colouring depending on its inner type
-				switch (DialogueParser.Identify(textLineSpan)) {
+				switch (DialogueParser.IdentifyBB(strippedLine))
+				{
 					case DialogueParser.LineType.Dialogue:
 						properties[0] = _colourDicts[DialogueParser.LineType.Choice];
 						break;
@@ -116,9 +115,5 @@ public sealed partial class DialogueScriptSyntaxHighlighter: SyntaxHighlighter
 	}
 
 	private static Dictionary<string, Color> MakeColourDict(Color colour)
-	{
-		return new() {
-			[KeyColour] = colour
-		};
-	}
+		=> new() { ["color"] = colour };
 }
