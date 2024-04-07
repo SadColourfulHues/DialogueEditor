@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://38d2p6uhbh8e"]
 
-[ext_resource type="StyleBox" uid="uid://xkm42mj726wl" path="res://Assets/styles/style_choice_normal.tres" id="1_ufki3"]
-[ext_resource type="StyleBox" uid="uid://d2p6qtiqlrv55" path="res://Assets/styles/style_choice_hover.tres" id="2_7hpmv"]
-[ext_resource type="StyleBox" uid="uid://c6lev20ov2ogx" path="res://Assets/styles/style_choice_pressed.tres" id="3_sb33v"]
+[ext_resource type="StyleBox" uid="uid://xkm42mj726wl" path="res://Assets/Styles/style_choice_normal.tres" id="1_ufki3"]
+[ext_resource type="StyleBox" uid="uid://d2p6qtiqlrv55" path="res://Assets/Styles/style_choice_hover.tres" id="2_7hpmv"]
+[ext_resource type="StyleBox" uid="uid://c6lev20ov2ogx" path="res://Assets/Styles/style_choice_pressed.tres" id="3_sb33v"]
 [ext_resource type="Script" path="res://Scripts/UI/ChoiceButton.cs" id="4_f17qu"]
 
 [node name="ChoiceItem" type="Button"]

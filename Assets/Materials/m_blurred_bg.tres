@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_r8kjt")
-shader_parameter/blur_level = 2.333
-shader_parameter/blur_mix = 0.491
+shader_parameter/blur_level = 3.63
+shader_parameter/blur_mix = 0.861

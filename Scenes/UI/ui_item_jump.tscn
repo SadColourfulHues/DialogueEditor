@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ctrdmqix5xoya"]
 
 [ext_resource type="Script" path="res://Scripts/UI/JumpToListItem.cs" id="1_6f8hi"]
-[ext_resource type="StyleBox" uid="uid://xkm42mj726wl" path="res://Assets/styles/style_choice_normal.tres" id="1_cwk2m"]
-[ext_resource type="StyleBox" uid="uid://d2p6qtiqlrv55" path="res://Assets/styles/style_choice_hover.tres" id="2_pyon0"]
-[ext_resource type="StyleBox" uid="uid://75ka8ag7bu7" path="res://Assets/styles/style_button_pressed.tres" id="3_qk0ae"]
+[ext_resource type="StyleBox" uid="uid://xkm42mj726wl" path="res://Assets/Styles/style_choice_normal.tres" id="1_cwk2m"]
+[ext_resource type="StyleBox" uid="uid://d2p6qtiqlrv55" path="res://Assets/Styles/style_choice_hover.tres" id="2_pyon0"]
+[ext_resource type="StyleBox" uid="uid://75ka8ag7bu7" path="res://Assets/Styles/style_button_pressed.tres" id="3_qk0ae"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q85dj"]
 font_size = 15

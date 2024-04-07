@@ -3,22 +3,28 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/shd_preview_bg.gdshader" id="1_f1xi4"]
 
 [sub_resource type="Gradient" id="Gradient_jfwfr"]
-offsets = PackedFloat32Array(0, 0.496933, 1)
-colors = PackedColorArray(0.952916, 0.434076, 0.377225, 1, 0.704417, 0.820965, 0.468673, 1, 0.537319, 0.690536, 0.987978, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 1)
+colors = PackedColorArray(0.203016, 0.530334, 0.897598, 1, 0.376199, 0.833223, 0.801026, 1, 0.440691, 1, 0.701273, 1, 0.181132, 0.805831, 0.462461, 1, 0.550459, 0.860879, 0.632823, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_t6tic"]
 gradient = SubResource("Gradient_jfwfr")
 
 [sub_resource type="Gradient" id="Gradient_4oaqn"]
-offsets = PackedFloat32Array(0, 0.625767, 1)
-colors = PackedColorArray(1, 0.189164, 0.192538, 1, 1, 0.741152, 0.485285, 1, 0.508117, 1, 0.647454, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.993865)
+colors = PackedColorArray(0.731542, 0.358574, 0.725274, 1, 0.843433, 0.408774, 0.985911, 1, 0.920319, 0.539331, 0.642775, 1, 1, 0.753594, 0.283437, 1, 0.862918, 0.489422, 0.191207, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5webb"]
 gradient = SubResource("Gradient_4oaqn")
 
 [resource]
 shader = ExtResource("1_f1xi4")
-shader_parameter/scroll_speed = 0.25
-shader_parameter/fade_speed = 0.15
+shader_parameter/strength = 1.0
 shader_parameter/gradient_a = SubResource("GradientTexture1D_t6tic")
 shader_parameter/gradient_b = SubResource("GradientTexture1D_5webb")
+shader_parameter/wave_size = 0.018
+shader_parameter/wave_speed = 0.2
+shader_parameter/fade_speed = 0.073

@@ -149,17 +149,12 @@ public sealed partial class DialoguePreview: Control, IDialoguePlaybackHandler
         _printUI.Visible = true;
     }
 
-    private async void OnRestart() {
+    private void OnRestart() {
         if (!_playback.HasData())
             return;
 
-        _choicesUI.Visible = false;
         _needsRestart = true;
-        _dialogueBox.StopAnimating();
-
         _playback.ResetFull();
-
-        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         _playback.ReloadBlock();
     }
 

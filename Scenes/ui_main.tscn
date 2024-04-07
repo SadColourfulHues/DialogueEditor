@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/EditorMain.cs" id="1_n68hj"]
 [ext_resource type="PackedScene" uid="uid://bnmj6shkufvns" path="res://Scenes/UI/ui_toolbar_button.tscn" id="2_6ptky"]
-[ext_resource type="StyleBox" uid="uid://bfdxm843p73m8" path="res://Assets/styles/style_toolbar.tres" id="2_vphhn"]
+[ext_resource type="StyleBox" uid="uid://bfdxm843p73m8" path="res://Assets/Styles/style_toolbar.tres" id="2_vphhn"]
 [ext_resource type="Texture2D" uid="uid://xl6gywflxsev" path="res://Assets/Icons/editor_save.svg" id="3_aq8ib"]
 [ext_resource type="Texture2D" uid="uid://c3tn1ed8tnohb" path="res://Assets/Icons/editor_new.svg" id="3_mu74e"]
 [ext_resource type="Texture2D" uid="uid://dc8aruan3muy2" path="res://Assets/Icons/editor_play.svg" id="4_51ygs"]

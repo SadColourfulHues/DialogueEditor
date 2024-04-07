@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bnmj6shkufvns"]
 
-[ext_resource type="StyleBox" uid="uid://d2lg186jdjxcv" path="res://Assets/styles/style_button_normal.tres" id="1_3x7n2"]
+[ext_resource type="StyleBox" uid="uid://d2lg186jdjxcv" path="res://Assets/Styles/style_button_normal.tres" id="1_3x7n2"]
 [ext_resource type="Texture2D" uid="uid://4lsfwchyxi8y" path="res://Assets/Icons/editor_open.svg" id="1_dtix7"]
-[ext_resource type="StyleBox" uid="uid://75ka8ag7bu7" path="res://Assets/styles/style_button_pressed.tres" id="2_q2uge"]
+[ext_resource type="StyleBox" uid="uid://75ka8ag7bu7" path="res://Assets/Styles/style_button_pressed.tres" id="2_q2uge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2xrou"]
 font_size = 10
